@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	pb "github.com/EwanValentine/shippy/user-service/proto/user"
 	"github.com/micro/go-micro"
+	pb "github.com/uhdang/mig-user-service/proto/user"
 	"log"
 )
 

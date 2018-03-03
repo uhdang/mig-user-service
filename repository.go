@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/jinzhu/gorm"
-	pb "github.com/uhdang/microservice-in-golang/user-service/proto/user"
+	pb "github.com/uhdang/mig-user-service/proto/user"
 )
 
 type Repository interface {
