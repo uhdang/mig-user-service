@@ -3,15 +3,15 @@ package main
 import (
 	"time"
 
+	pb "github.com/EwanValentine/shippy-user-service/proto/auth"
 	"github.com/dgrijalva/jwt-go"
-	pb "github.com/uhdang/mig-user-service/proto/user"
 )
 
 var (
 
 	// Define a secure key string used
 	// as a salt when hashing our tokens.
-	// Please make your own way more secure than this.
+	// Please make your own way more secure than this,
 	// use a randomly generated md5 hash or something.
 	key = []byte("mySuperSecretKeyLol")
 )
@@ -24,8 +24,8 @@ type CustomClaims struct {
 }
 
 type Authable interface {
-	Decode(token string) (interface{}, error)
-	Encode(data interface{}) (string, error)
+	Decode(token string) (*CustomClaims, error)
+	Encode(user *pb.User) (string, error)
 }
 
 type TokenService struct {
@@ -33,7 +33,7 @@ type TokenService struct {
 }
 
 // Decode a token string into a token object
-func (srv *TokenService) Decode(token string) (*CustomClaims, error) {
+func (srv *TokenService) Decode(tokenString string) (*CustomClaims, error) {
 
 	// Parse the token
 	token, err := jwt.ParseWithClaims(tokenString, &CustomClaims{}, func(token *jwt.Token) (interface{}, error) {
@@ -57,7 +57,7 @@ func (srv *TokenService) Encode(user *pb.User) (string, error) {
 	claims := CustomClaims{
 		user,
 		jwt.StandardClaims{
-			ExpiredAt: expireToken,
+			ExpiresAt: expireToken,
 			Issuer:    "go.micro.srv.user",
 		},
 	}
