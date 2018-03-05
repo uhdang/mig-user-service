@@ -9,7 +9,8 @@ rundb:
 	docker run -d --name mig-postgres -p 5432:5432 postgres
 
 run:
-	docker run --net="host" \
+	docker run --name mig-user-service \
+		--net="host" \
 		-p 50051 \
 		-e DB_HOST=localhost \
 		-e DB_PASS=password \

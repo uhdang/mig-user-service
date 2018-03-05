@@ -33,7 +33,7 @@ func main() {
 	srv := micro.NewService(
 
 		// This name must match the package name given in your protobuf definition
-		micro.Name("go.micro.srv.auth"),
+		micro.Name("auth"),
 	)
 
 	// Init will parse the command line flags.
