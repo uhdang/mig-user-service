@@ -3,7 +3,10 @@ build:
 		--go_out=plugins=micro:. \
 		proto/auth/auth.proto
 
-	docker build -t shippy-user-service .
+	docker build -t mig-user-service .
+
+rundb:
+	docker run -d --name mig-postgres -p 5432:5432 postgres
 
 run:
 	docker run --net="host" \
@@ -13,4 +16,4 @@ run:
 		-e DB_USER=postgres \
 		-e MICRO_SERVER_ADDRESS=:50051 \
 		-e MICRO_REGISTRY=mdns \
-		shippy-user-service
+		mig-user-service

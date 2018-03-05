@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"log"
 
-	pb "github.com/EwanValentine/shippy-user-service/proto/auth"
 	micro "github.com/micro/go-micro"
+	pb "github.com/uhdang/mig-user-service/proto/auth"
 	"golang.org/x/crypto/bcrypt"
 	"golang.org/x/net/context"
 )

@@ -3,8 +3,8 @@ package main
 import (
 	"time"
 
-	pb "github.com/EwanValentine/shippy-user-service/proto/auth"
 	"github.com/dgrijalva/jwt-go"
+	pb "github.com/uhdang/mig-user-service/proto/auth"
 )
 
 var (
