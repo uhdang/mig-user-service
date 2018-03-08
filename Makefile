@@ -30,3 +30,13 @@ run:
 		-e MICRO_SERVER_ADDRESS=:50051 \
 		-e MICRO_REGISTRY=mdns \
 		mig-user-service
+
+createuser:
+	curl -XPOST -H 'Content-Type: application/json' \
+    -d '{ "service": "shippy.auth", "method": "Auth.Create", "request": { "user": { "email": "ewan.valentine89@gmail.com", "password": "testing123", "name": "Ewan Valentine", "company": "BBC" } } }' \
+    http://localhost:8080/rpc
+
+authenticateuser:
+	curl -XPOST -H 'Content-Type: application/json' \
+    -d '{ "service": "shippy.auth", "method": "Auth.Auth", "request":  { "email": "your@email.com", "password": "SomePass" } }' \
+    http://localhost:8080/rpc
