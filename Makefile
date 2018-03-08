@@ -9,13 +9,22 @@ createdockernetwork:
 	docker network create mig
 
 rundb:
-	docker run -d --name mig-postgres --net mig -p 5432:5432 postgres
+	docker run -d --name mig-postgres -p 5432:5432 postgres
+
+runmicro:
+	docker run -p 8080:8080 \
+		-e MICRO_REGISTRY=mdns \
+		microhq/micro api \
+		--handler=rpc \
+		--address=:8080 \
+		--namespace=mig 
+
 
 run:
 	docker run --name mig-user-service \
-		--net mig \
-		-p 50051:50051 \
-		-e DB_HOST=mig-postgres \
+		--net="host" \
+		-p 50051 \
+		-e DB_HOST=localhost \
 		-e DB_PASS=password \
 		-e DB_USER=postgres \
 		-e MICRO_SERVER_ADDRESS=:50051 \

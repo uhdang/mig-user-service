@@ -33,12 +33,13 @@ func main() {
 	srv := micro.NewService(
 
 		// This name must match the package name given in your protobuf definition
-		micro.Name("auth"),
+		micro.Name("mig.auth"),
 	)
 
 	// Init will parse the command line flags.
 	srv.Init()
 
+	// will comment this out for now to save having to run this locally..
 	publisher := micro.NewPublisher("user.created", srv.Client())
 
 	// Register handler
